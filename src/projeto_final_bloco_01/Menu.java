@@ -2,16 +2,25 @@ package projeto_final_bloco_01;
 
 import java.util.Scanner;
 
+import controller.FrutasController;
+import model.FrutaTropical;
 
 public class Menu {
 	public static void main(String[] args) {
 
 		Scanner leia = new Scanner(System.in);
 
+		FrutasController frutas = new FrutasController();
+
 		int opcao;
+		float valor;
+		String nome;
+		int codigo;
+		int quantidade;
+		String validade;
+		boolean citrico;
 
 		while (true) {
-			
 
 			System.out.println("*****************************************************");
 			System.out.println("                                                     ");
@@ -34,37 +43,97 @@ public class Menu {
 			if (opcao == 5) {
 				System.out.println("\nHORTIFRUTI !");
 				sobre();
-                 leia.close();
+				leia.close();
 				System.exit(0);
 			}
 
 			switch (opcao) {
-				case 1:
-					System.out.println("Cadastra Fruta:");
+			case 1:
+				System.out.println(" Cadastro de Fruta: ");
 
-					break;
-				case 2:
-					System.out.println("Atualiza Fruta:\n\n");
+				System.out.println(" Digite o nome: ");
+				leia.skip("\\R?");
+				nome = leia.nextLine();
 
-					break;
-				case 3:
-					System.out.println("Listar todas as frutas:\n\n");
+				System.out.println(" Digite o valor da fruta: ");
+				valor = leia.nextFloat();
 
-					break;
-				case 4:
-					System.out.println("Deletar Fruta:\n\n");
+				System.out.println(" Digite o codigo: ");
+				codigo = leia.nextInt();
 
-					break;
-			default : 
-				System.out.println("Escolha uma opção Valida!");
-				break ;
+				System.out.println(" Digite a quantidade: ");
+				quantidade = leia.nextInt();
+
+				System.out.println(" Digite a validade: ");
+				leia.skip("\\R?");
+				validade = leia.nextLine();
+
+				System.out.println(" É uma fruta tropical? True|False");
+				citrico = leia.nextBoolean();
 				
-		
+				frutas.cadastrar(new FrutaTropical(nome,valor,codigo,quantidade,validade,citrico));
+
+				break;
+			case 2:
+
+				System.out.println(" Atualiza Fruta:\n\n");
+				
+				System.out.println(" Digite o codigo da fruta: ");
+				codigo = leia.nextInt();
+				var procurarFruta = frutas.procurarNaCollection(codigo);
+				if ( procurarFruta != null ) {
+					System.out.println(" Digite o nome: ");
+					leia.skip("\\R?");
+					nome = leia.nextLine();
+
+					System.out.println(" Digite o valor da fruta: ");
+					valor = leia.nextFloat();
+
+					System.out.println(" Digite o codigo: ");
+					codigo = leia.nextInt();
+
+					System.out.println(" Digite a quantidade: ");
+					quantidade = leia.nextInt();
+
+					System.out.println(" Digite a validade: ");
+					leia.skip("\\R?");
+					validade = leia.nextLine();
+
+					System.out.println(" É uma fruta tropical? True|False");
+					citrico = leia.nextBoolean();
+					
+					frutas.atualizar(new FrutaTropical(nome,valor,codigo,quantidade,validade,citrico));
+
+				}
+				
+				else {
+					System.out.println(" Produto não encontrado! ");
+				}
+
+				break;
+			case 3:
+				System.out.println(" Listar todas as frutas:\n\n");
+
+				
+				frutas.listarTodas();
+				break;
+			case 4:
+				System.out.println(" Deletar Fruta:\n\n");
+				
+				System.out.println(" Digite o codigo da fruta:");
+				codigo = leia.nextInt();
+				frutas.deletar(codigo);
+				
+
+				break;
+			default:
+				System.out.println(" Escolha uma opção Valida!");
+				break;
 
 			}
 		}
 	}
-    
+
 	public static void sobre() {
 		System.out.println("\n*********************************************************");
 		System.out.println("Projeto Desenvolvido por: Ketlyn suellen dos santos ");

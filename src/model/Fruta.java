@@ -1,19 +1,20 @@
 package model;
 
-public abstract class Frutas  {
+public abstract class Fruta  {
 	
-	private float valor;
 	private String nome;
+	private float valor;
 	private int codigo;
 	private int quantidade;
 	private String validade;
 	
 	
-	public Frutas(float valor, String nome, int codigo, int quantidade, String validade) {
+	public Fruta( String nome,float valor, int codigo, int quantidade, String validade) {
 		
 		
-		this.valor = valor;
+		
 		this.nome = nome;
+		this.valor = valor;
 		this.codigo = codigo;
 		this.quantidade = quantidade;
 		this.validade = validade;
@@ -63,11 +64,11 @@ public abstract class Frutas  {
 	}
 	
 	public void visualizar() {
-			System.out.println("Validade: " + this.valor);
-			System.out.println("Validade: " + this.nome);
-			System.out.println("Validade: " + this.codigo);
-			System.out.println("Validade: " + this.quantidade);
-			System.out.println("Validade: " + this.validade);
+			System.out.println(" Nome: " + this.nome);
+			System.out.println(" Valor: " + this.valor);
+			System.out.println(" Codigo: " + this.codigo);
+			System.out.println(" Quantidade: " + this.quantidade);
+			System.out.println(" Validade: " + this.validade);
 
 
 

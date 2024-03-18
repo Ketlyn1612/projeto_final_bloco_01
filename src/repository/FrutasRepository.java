@@ -1,14 +1,14 @@
 package repository;
 
-import model.Frutas;
+import model.Fruta;
 
-public interface Repository {
+public interface FrutasRepository {
 
 
 	public void procurarPorNumero(int codigo);
 	public void listarTodas();
-	public void cadastrar(Frutas frutas);
-	public void atualizar(Frutas frutas);
+	public void cadastrar(Fruta frutas);
+	public void atualizar(Fruta frutas);
 	public void deletar(int numero);
 	
 	
